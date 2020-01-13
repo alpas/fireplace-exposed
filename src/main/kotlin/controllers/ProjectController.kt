@@ -13,7 +13,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 class ProjectController : Controller() {
     fun index(call: HttpCall) {
         transaction {
-            val projects = Project.all().toList()
+            val projects = caller<User>().ownedProjects.toList()
             call.render("project_list", mapOf("projects" to projects))
         }
     }

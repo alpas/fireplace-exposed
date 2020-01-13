@@ -41,6 +41,8 @@ class User(id: EntityID<Long>) : LongEntity(id), Authenticatable {
     var createdAt by Users.createdAt
     var updatedAt by Users.updatedAt
 
+    val ownedProjects by Project referrersOn Projects.owner
+
     override fun id() = id.value
     override fun isEmailVerified() = emailVerifiedAt != null
 
