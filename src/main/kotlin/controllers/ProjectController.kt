@@ -1,6 +1,5 @@
 package dev.alpas.fireplace.controllers
 
-import dev.alpas.fireplace.entities.Project
 import dev.alpas.fireplace.entities.Projects
 import dev.alpas.fireplace.entities.User
 import dev.alpas.fireplace.guards.CreateProjectGuard
@@ -25,17 +24,10 @@ class ProjectController : Controller() {
 
     fun store(call: HttpCall) {
         transaction {
-            call.validateUsing(CreateProjectGuard::class)
-            val now = call.nowInCurrentTimezone().toInstant()
-            val titleParam = call.paramAsString("title")!!
-            Project.new {
-                title = titleParam
-                description = call.paramAsString("description")!!
-                owner = caller()
-                createdAt = now
-                updatedAt = now
+            call.validateUsing(CreateProjectGuard::class) {
+                val project = commit()
+                flash("success", "Successfully added project '${project.title}'!")
             }
-            flash("success", "Successfully added project '${titleParam}'!")
         }
         call.redirect().toRouteNamed("projects.list")
     }
