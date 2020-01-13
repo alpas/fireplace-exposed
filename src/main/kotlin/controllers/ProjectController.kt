@@ -3,6 +3,7 @@ package dev.alpas.fireplace.controllers
 import dev.alpas.fireplace.entities.Project
 import dev.alpas.fireplace.entities.Projects
 import dev.alpas.fireplace.entities.User
+import dev.alpas.fireplace.guards.CreateProjectGuard
 import dev.alpas.http.HttpCall
 import dev.alpas.orAbort
 import dev.alpas.routing.Controller
@@ -24,6 +25,7 @@ class ProjectController : Controller() {
 
     fun store(call: HttpCall) {
         transaction {
+            call.validateUsing(CreateProjectGuard::class)
             val now = call.nowInCurrentTimezone().toInstant()
             val titleParam = call.paramAsString("title")!!
             Project.new {
