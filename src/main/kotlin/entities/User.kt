@@ -49,4 +49,6 @@ class User(id: EntityID<Long>) : LongEntity(id), Authenticatable {
         val hash = email.trim().toLowerCase().md5()
         return "https://www.gravatar.com/avatar/$hash?s=160&d=robohash"
     }
+
+    override val mustVerifyEmail = false
 }
