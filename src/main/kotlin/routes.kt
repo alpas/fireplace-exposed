@@ -6,7 +6,7 @@ import dev.alpas.routing.Router
 
 fun Router.addRoutes() = apply {
     webRoutes()
-    authRoutes()
+    authRoutes(requireEmailVerification = false)
 }
 
 private fun Router.webRoutes() {
