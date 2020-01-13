@@ -31,4 +31,7 @@
     <logger name="dev.alpas.http.HttpCall" level="warn">
         <appender-ref ref="FILE"/>
     </logger>
+    <logger name="Exposed" level="debug">
+        <appender-ref ref="STDOUT"/>
+    </logger>
 </configuration>
