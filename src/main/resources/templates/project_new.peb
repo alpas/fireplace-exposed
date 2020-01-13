@@ -12,7 +12,7 @@
                     <input class="text-lg bg-gray-200 appearance-none w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-none {{ whenError('title', 'border-red-500') }}"
                            id="title" type="text" name="title" value="{{ old('title') }}" autofocus>
                     {% if hasError('title') %}
-                        <p class="text-red-600 text-sm mt-2">{{ firstError('title') }}</p>
+                        <p class="text-red-600 text-sm p-2">{{ firstError('title') }}</p>
                     {% endif %}
                 </div>
                 <div class="mt-8 bg-gray-200 rounded">
@@ -20,7 +20,7 @@
                     <textarea id="description" name="description" rows="3"
                               class="text-lg bg-gray-200 appearance-none w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-none {{ whenError('description', 'border-red-500') }}">{{ old('description', '') }}</textarea>
                     {% if hasError('description') %}
-                        <p class="text-red-600 text-sm mt-2">{{ firstError('description') }}</p>
+                        <p class="text-red-600 text-sm p-2">{{ firstError('description') }}</p>
                     {% endif %}
                 </div>
                 <div class="flex justify-end mt-10">
